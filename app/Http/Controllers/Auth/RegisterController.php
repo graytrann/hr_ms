@@ -17,7 +17,7 @@ class RegisterController extends Controller
     public function register()
     {
         $role = DB::table('role_type_users')->get();
-        return view('auth.register',compact('role'));
+        return view('auth.register', compact('role'));
     }
     public function storeUser(Request $request)
     {
@@ -25,13 +25,19 @@ class RegisterController extends Controller
             'name'      => 'required|string|max:255',
             'email'     => 'required|string|email|max:255|unique:users',
             'role_name' => 'required|string|max:255',
-            'password'  => 'required|string|min:8|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
+                'confirmed',
+            ],
             'password_confirmation' => 'required',
         ]);
 
         $dt       = Carbon::now();
         $todayDate = $dt->toDayDateTimeString();
-        
+
         User::create([
             'name'      => $request->name,
             'avatar'    => $request->image,
@@ -41,7 +47,7 @@ class RegisterController extends Controller
             'status'    => 'Active',
             'password'  => Hash::make($request->password),
         ]);
-        Toastr::success('Create new account successfully :)','Success');
+        Toastr::success('Create new account successfully :)', 'Success');
         return redirect('login');
     }
 }
