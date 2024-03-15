@@ -44,9 +44,14 @@ function set_active($route)
     return Request::path() == $route ? 'active' : '';
 }
 
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
 Route::get('/', function () {
-    return view('auth.login');
+    return view('homepage.page');
 });
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('home', function () {
