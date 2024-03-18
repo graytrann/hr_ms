@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\Auth\VerificationMailRegister;
+
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LockScreen;
 use App\Http\Controllers\PayrollController;
@@ -86,6 +88,8 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/logout', 'logout')->name('logout');
 });
 
+
+
 // ----------------------------- lock screen --------------------------------//
 Route::controller(LockScreen::class)->group(function () {
     Route::get('lock_screen', 'lockScreen')->middleware('auth')->name('lock_screen');
@@ -108,6 +112,14 @@ Route::controller(ForgotPasswordController::class)->group(function () {
 Route::controller(ResetPasswordController::class)->group(function () {
     Route::get('reset-password/{token}', 'getPassword');
     Route::post('reset-password', 'updatePassword');
+});
+
+// --------- VERIFY EMAIL RESIGER --------
+// Route::get('/verify-email/{token}', [VerificationMailRegister::class, 'verify'])->name('verify-email');
+
+Route::controller(VerificationMailRegister::class)->group(function () {
+    Route::get('/verify-email/{token}','verify')->name('verify-email');
+
 });
 
 // ----------------------------- user profile ------------------------------//
@@ -319,3 +331,6 @@ Route::controller(SalesController::class)->group(function () {
 Route::controller(PersonalInformationController::class)->group(function () {
     Route::post('user/information/save', 'saveRecord')->middleware('auth')->name('user/information/save');
 });
+
+
+

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Str; // Import the Str class
 use Hash;
 use DB;
 use Carbon\Carbon;
@@ -41,6 +42,7 @@ class RegisterController extends Controller
 
         $dt       = Carbon::now();
         $todayDate = $dt->toDayDateTimeString();
+        $emailVerificationToken = Str::random(60);
 
         $user = User::create([
             'name'      => $request->name,
@@ -50,12 +52,18 @@ class RegisterController extends Controller
             'role_name' => $request->role_name,
             'status'    => 'Active',
             'password'  => Hash::make($request->password),
+            'email_verification_token' => $emailVerificationToken,
         ]);
 
         // Send welcome email
-        Mail::to($user->email)->send(new WelcomeMail($user));
+        // Mail::to($user->email)->send(new WelcomeMail($user));
+        Mail::send('emails.welcome', ['emailVerificationToken' => $emailVerificationToken], function ($message) use ($request) {
+            $message->from($request->email);
+            $message->to('trankhaiphong987@gmail.com');
+            $message->subject('Verify Email Notification');
+        });
 
-        Toastr::success('Create new account successfully :)', 'Success');
-        return redirect('login');
+        Toastr::success('Verify in your account:)', 'Success');
+        return  view('homepage.page');
     }
 }
