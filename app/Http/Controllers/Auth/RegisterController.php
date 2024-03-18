@@ -11,6 +11,10 @@ use DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
+use App\Mail\VerifyEmail;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\WelcomeMail;
 
 class RegisterController extends Controller
 {
@@ -38,7 +42,7 @@ class RegisterController extends Controller
         $dt       = Carbon::now();
         $todayDate = $dt->toDayDateTimeString();
 
-        User::create([
+        $user = User::create([
             'name'      => $request->name,
             'avatar'    => $request->image,
             'email'     => $request->email,
@@ -47,6 +51,10 @@ class RegisterController extends Controller
             'status'    => 'Active',
             'password'  => Hash::make($request->password),
         ]);
+
+        // Send welcome email
+        Mail::to($user->email)->send(new WelcomeMail($user));
+
         Toastr::success('Create new account successfully :)', 'Success');
         return redirect('login');
     }
