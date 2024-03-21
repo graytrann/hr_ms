@@ -27,7 +27,7 @@ class RegisterController extends Controller
     public function storeUser(Request $request)
     {
         $request->validate([
-            'name'      => 'required|string|max:255',
+            'name' => ['required', 'string', 'max:255', 'regex:/^[^\d]*$/'],
             'email'     => 'required|string|email|max:255|unique:users',
             'role_name' => 'required|string|max:255',
             'password' => [

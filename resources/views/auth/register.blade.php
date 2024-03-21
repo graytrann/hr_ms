@@ -19,11 +19,19 @@
                         @csrf
                         <div class="form-group">
                             <label>Full Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Enter Your Name">
-                            @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="nameInput" name="name" value="{{ old('name') }}" placeholder="Enter Your Name">
+                            <span id="nameError" class="invalid-feedback" role="alert" style="display: none;">
+                                <strong>Please enter your name without contain special characters or numbers</strong>
                             </span>
+                            <span id="nameError2" class="invalid-feedback" role="alert" style="display: none;">
+                                <strong>The name field is required, and cannot contain special characters or numbers</strong>
+                            </span>
+
+                            @error('name')
+                            <script>
+                                document.getElementById('nameError2').style.display = 'block';
+                                document.getElementById('nameError').style.display = 'none';
+                            </script>
                             @enderror
                         </div>
                         <div class="form-group">
@@ -105,5 +113,18 @@
             passwordrepeatInput.type = "password";
         }
     }
+
+    // VALIDATE-NAME 
+    document.getElementById('nameInput').addEventListener('input', function() {
+        var name = this.value.trim();
+        var regex = /^[^\d]+$/; // Kiểm tra xem có chứa số không
+        var errorSpan = document.getElementById('nameError');
+
+        if (name === '' || !regex.test(name)) {
+            errorSpan.style.display = 'block'; // Hiển thị thông báo lỗi nếu có lỗi
+        } else {
+            errorSpan.style.display = 'none'; // Ẩn thông báo lỗi khi không có lỗi
+        }
+    });
 </script>
 @endsection
