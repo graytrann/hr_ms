@@ -2,11 +2,11 @@
 @section('content')
 <div class="main-wrapper">
     <div class="account-content">
-        <a href="{{ route('form/job/list') }}" class="btn btn-primary apply-btn">Apply Job</a>
+        <!-- <a href="{{ route('form/job/list') }}" class="btn btn-primary apply-btn">Apply Job</a> -->
         <div class="container">
             <!-- Account Logo -->
             <div class="account-logo">
-                <a href="index.html"><img src="{{ URL::to('assets/img/logo2.png') }}" alt="SoengSouy"></a>
+                <a href="index.html"><img src="https://cdn.haitrieu.com/wp-content/uploads/2021/09/Logo-DH-CONG-NGHE-THANH-PHO-HO-CHI-MINH-HUTECH.png" alt="SoengSouy"></a>
             </div>
             <!-- /Account Logo -->
             <div class="account-box">
@@ -86,10 +86,17 @@
                                 <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fa-regular fa-eye"></i></span>
                             </div>
                             <div>
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>Requires 8 characters, 1 uppercase letter, 1 special character</strong>
+                                <span id="passwordError" class="invalid-feedback" role="alert" style="display: none;">
+                                    <strong>Please enter your password with 8 characters, 1 uppercase letter, 1 special character</strong>
                                 </span>
+                                <span id="passwordError2" class="invalid-feedback" role="alert" style="display: none;">
+                                    <strong>Password is required</strong>
+                                </span>
+                                @error('password')
+                                <script>
+                                    document.getElementById('passwordError2').style.display = 'block';
+                                    document.getElementById('passwordError').style.display = 'none';
+                                </script>
                                 @enderror
                             </div>
                         </div>
@@ -98,6 +105,20 @@
                             <div class="password_container">
                                 <input id="passwordrepeat-input" type="password" class="form-control" name="password_confirmation" placeholder="Choose Repeat Password">
                                 <span class="toggle-password" onclick="togglePasswordRepeatVisibility()"><i class="fa-regular fa-eye"></i></span>
+                            </div>
+                            <div>
+                                <span id="passwordrepeatError" class="invalid-feedback" role="alert" style="display: none;">
+                                    <strong>Password not matched</strong>
+                                </span>
+                                <span id="passwordrepeatError2" class="invalid-feedback" role="alert" style="display: none;">
+                                    <strong>Repeat Password is required</strong>
+                                </span>
+                                @error('password_confirmation')
+                                <script>
+                                    document.getElementById('passwordrepeatError2').style.display = 'block';
+                                    document.getElementById('passwordrepeatError').style.display = 'none';
+                                </script>
+                                @enderror
                             </div>
                             <div class="form-group text-center">
                                 <button class="btn btn-primary account-btn mt-5" type="submit">Register</button>
@@ -136,25 +157,25 @@
     // VALIDATE-NAME 
     document.getElementById('nameInput').addEventListener('input', function() {
         var name = this.value.trim();
-        var regex = /^[^\d]+$/; // Kiểm tra xem có chứa số không
+        var regex = /^[^\d]+$/;
         var errorSpan = document.getElementById('nameError');
 
         if (name === '' || !regex.test(name)) {
-            errorSpan.style.display = 'block'; // Hiển thị thông báo lỗi nếu có lỗi
+            errorSpan.style.display = 'block';
         } else {
-            errorSpan.style.display = 'none'; // Ẩn thông báo lỗi khi không có lỗi
+            errorSpan.style.display = 'none';
         }
     });
     // VALIDATE-EMAIL
     document.getElementById('emailInput').addEventListener('input', function() {
         var email = this.value.trim();
-        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Biểu thức chính quy để validate email
+        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         var errorSpan = document.getElementById('emailError');
 
         if (email === '' || !regex.test(email)) {
-            errorSpan.style.display = 'block'; // Hiển thị thông báo lỗi nếu có lỗi
+            errorSpan.style.display = 'block';
         } else {
-            errorSpan.style.display = 'none'; // Ẩn thông báo lỗi khi không có lỗi
+            errorSpan.style.display = 'none';
         }
     });
 
@@ -164,10 +185,66 @@
         var errorSpan = document.getElementById('roleError');
 
         if (selectedValue === '' || selectedValue === null) {
-            errorSpan.style.display = 'block'; // Hiển thị thông báo lỗi nếu không có giá trị được chọn
+            errorSpan.style.display = 'block';
         } else {
-            errorSpan.style.display = 'none'; // Ẩn thông báo lỗi khi có giá trị được chọn
+            errorSpan.style.display = 'none';
         }
     });
+
+    // VALIDATE-PASSWORD
+    document.getElementById('password-input').addEventListener('input', function() {
+        var password = this.value;
+        var errorSpan = document.getElementById('passwordError');
+
+
+        if (password.length < 8) {
+            errorSpan.style.display = 'block';
+            return;
+        }
+
+        var hasUppercase = false;
+        var hasLowercase = false;
+        var hasNumber = false;
+        var hasSpecialChar = false;
+
+
+        for (var i = 0; i < password.length; i++) {
+            var char = password.charAt(i);
+            if (char >= 'A' && char <= 'Z') {
+                hasUppercase = true;
+            } else if (char >= 'a' && char <= 'z') {
+                hasLowercase = true;
+            } else if (char >= '0' && char <= '9') {
+                hasNumber = true;
+            } else {
+                hasSpecialChar = true;
+            }
+        }
+
+
+        if (!hasUppercase || !hasLowercase || !hasNumber || !hasSpecialChar) {
+            errorSpan.style.display = 'block';
+            return;
+        }
+
+
+        errorSpan.style.display = 'none';
+    });
+
+    document.getElementById('passwordrepeat-input').addEventListener('input', function() {
+        var password = document.getElementById('password-input').value;
+        var confirmPassword = this.value.trim();
+        var errorSpan = document.getElementById('passwordrepeatError');
+
+        if (!isValidRepeatPassword(password, confirmPassword)) {
+            errorSpan.style.display = 'block';
+        } else {
+            errorSpan.style.display = 'none';
+        }
+    });
+
+    function isValidRepeatPassword(password, confirmPassword) {
+        return password === confirmPassword;
+    }
 </script>
 @endsection
