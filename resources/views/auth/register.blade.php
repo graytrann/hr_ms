@@ -24,7 +24,7 @@
                                 <strong>Please enter your name without contain special characters or numbers</strong>
                             </span>
                             <span id="nameError2" class="invalid-feedback" role="alert" style="display: none;">
-                                <strong>The name field is required, and cannot contain special characters or numbers</strong>
+                                <strong>Name is required</strong>
                             </span>
 
                             @error('name')
@@ -34,17 +34,28 @@
                             </script>
                             @enderror
                         </div>
+                        <!-- EMAIL-INPUT -->
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter Your Email">
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                            <input id="emailInput" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter Your Email">
+                            <span id="emailError" class="invalid-feedback" role="alert" style="display: none;">
+                                <strong>Please enter your email with correct format</strong>
                             </span>
+                            <span id="emailError2" class="invalid-feedback" role="alert" style="display: none;">
+                                <strong>Email is required</strong>
+                            </span>
+                            @error('email')
+                            <script>
+                                document.getElementById('emailError2').style.display = 'block';
+                                document.getElementById('emailError').style.display = 'none';
+                            </script>
                             @enderror
                         </div>
+
+
                         {{-- insert defaults --}}
                         <input type="hidden" class="image" name="image" value="photo_defaults.jpg">
+                        <!-- ROLE-INPUT-SELECT -->
                         <div class="form-group">
                             <label class="col-form-label">Role Name</label>
                             <select class="select @error('role_name') is-invalid @enderror" name="role_name" id="role_name">
@@ -121,6 +132,18 @@
         var errorSpan = document.getElementById('nameError');
 
         if (name === '' || !regex.test(name)) {
+            errorSpan.style.display = 'block'; // Hiển thị thông báo lỗi nếu có lỗi
+        } else {
+            errorSpan.style.display = 'none'; // Ẩn thông báo lỗi khi không có lỗi
+        }
+    });
+    // VALIDATE-EMAIL
+    document.getElementById('emailInput').addEventListener('input', function() {
+        var email = this.value.trim();
+        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Biểu thức chính quy để validate email
+        var errorSpan = document.getElementById('emailError');
+
+        if (email === '' || !regex.test(email)) {
             errorSpan.style.display = 'block'; // Hiển thị thông báo lỗi nếu có lỗi
         } else {
             errorSpan.style.display = 'none'; // Ẩn thông báo lỗi khi không có lỗi
