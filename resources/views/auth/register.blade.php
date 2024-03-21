@@ -54,28 +54,56 @@
 
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter Password">
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>8 ki tu 1 hoa 1 ki tu dac biet</strong>
-                            </span>
-                            @enderror
+                            <div class="password_container">
+                                <input id="password-input" type="password" class="form-control @error('password') invalid-input @enderror" name="password" placeholder="Enter Password">
+                                <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fa-regular fa-eye"></i></span>
+                            </div>
+                            <div>
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Requires 8 characters, 1 uppercase letter, 1 special character</strong>
+                                </span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label><strong>Repeat Password</strong></label>
-                            <input type="password" class="form-control" name="password_confirmation" placeholder="Choose Repeat Password">
-                        </div>
-                        <div class="form-group text-center">
-                            <button class="btn btn-primary account-btn" type="submit">Register</button>
+                            <label>Repeat Password</label>
+                            <div class="password_container">
+                                <input id="passwordrepeat-input" type="password" class="form-control" name="password_confirmation" placeholder="Choose Repeat Password">
+                                <span class="toggle-password" onclick="togglePasswordRepeatVisibility()"><i class="fa-regular fa-eye"></i></span>
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary account-btn mt-5" type="submit">Register</button>
+                            </div>
                         </div>
                         <div class="account-footer">
                             <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
                         </div>
-                    </form>
-                    <!-- /Account Form -->
                 </div>
+                </form>
+                <!-- /Account Form -->
             </div>
         </div>
     </div>
 </div>
+</div>
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password-input");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+
+    function togglePasswordRepeatVisibility() {
+        var passwordrepeatInput = document.getElementById("passwordrepeat-input");
+        if (passwordrepeatInput.type === "password") {
+            passwordrepeatInput.type = "text";
+        } else {
+            passwordrepeatInput.type = "password";
+        }
+    }
+</script>
 @endsection

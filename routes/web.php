@@ -50,6 +50,8 @@ function set_active($route)
 //     return view('auth.login');
 // });
 
+
+
 Route::get('/', function () {
     return view('homepage.page');
 });
@@ -80,6 +82,7 @@ Route::controller(SettingController::class)->group(function () {
     Route::post('roles/permissions/update', 'editRolesPermissions')->middleware('auth')->name('roles/permissions/update');
     Route::post('roles/permissions/delete', 'deleteRolesPermissions')->middleware('auth')->name('roles/permissions/delete');
 });
+
 
 // -----------------------------login----------------------------------------//
 Route::controller(LoginController::class)->group(function () {
