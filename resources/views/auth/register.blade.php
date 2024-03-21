@@ -58,15 +58,23 @@
                         <!-- ROLE-INPUT-SELECT -->
                         <div class="form-group">
                             <label class="col-form-label">Role Name</label>
-                            <select class="select @error('role_name') is-invalid @enderror" name="role_name" id="role_name">
+                            <select id="roleInput" class="select @error('role_name') is-invalid @enderror" name="role_name" id="role_name">
                                 <option selected disabled>-- Select Role Name --</option>
                                 @foreach ($role as $name)
                                 <option value="{{ $name->role_type }}">{{ $name->role_type }}</option>
                                 @endforeach
                             </select>
+                            <span id="roleError" class="invalid-feedback" role="alert" style="display: none;">
+                                <strong>Please choose your Role</strong>
+                            </span>
+                            <span id="roleError2" class="invalid-feedback" role="alert" style="display: none;">
+                                <strong>Role is required</strong>
+                            </span>
                             @error('role_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                            <script>
+                                document.getElementById('roleError2').style.display = 'block';
+                                document.getElementById('roleError').style.display = 'none';
+                            </script>
                             </span>
                             @enderror
                         </div>
@@ -147,6 +155,18 @@
             errorSpan.style.display = 'block'; // Hiển thị thông báo lỗi nếu có lỗi
         } else {
             errorSpan.style.display = 'none'; // Ẩn thông báo lỗi khi không có lỗi
+        }
+    });
+
+    // VALIDATE-ROLE
+    document.getElementById('roleInput').addEventListener('change', function() {
+        var selectedValue = this.value;
+        var errorSpan = document.getElementById('roleError');
+
+        if (selectedValue === '' || selectedValue === null) {
+            errorSpan.style.display = 'block'; // Hiển thị thông báo lỗi nếu không có giá trị được chọn
+        } else {
+            errorSpan.style.display = 'none'; // Ẩn thông báo lỗi khi có giá trị được chọn
         }
     });
 </script>
