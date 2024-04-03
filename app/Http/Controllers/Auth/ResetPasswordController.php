@@ -9,17 +9,21 @@ use App\Models\User;
 use Hash;
 use Brian2694\Toastr\Facades\Toastr;
 
+
 class ResetPasswordController extends Controller
 {
-    public function getPassword($token)
+    public function getPassword(Request $request, $token)
     {
-
-        return view('auth.passwords.reset', ['token' => $token]);
+        $email = $request->query('email');
+        // Lưu email vào session để sử dụng cho old('email')
+        session()->flash('reset_email', $email);
+        // Trả về view với token và email
+        return view('auth.passwords.reset', compact('token', 'email'));
     }
     public function updatePassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users',
+            'email' => 'email|exists:users',
             'password' => [
                 'required',
                 'string',

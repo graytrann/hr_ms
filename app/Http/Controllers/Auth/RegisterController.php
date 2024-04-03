@@ -64,6 +64,6 @@ class RegisterController extends Controller
         });
 
         Toastr::success('Verify in your account:)', 'Success');
-        return  view('homepage.page');
+        return  view('homepage.verify');
     }
 }

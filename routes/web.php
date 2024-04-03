@@ -121,8 +121,7 @@ Route::controller(ResetPasswordController::class)->group(function () {
 // Route::get('/verify-email/{token}', [VerificationMailRegister::class, 'verify'])->name('verify-email');
 
 Route::controller(VerificationMailRegister::class)->group(function () {
-    Route::get('/verify-email/{token}','verify')->name('verify-email');
-
+    Route::get('/verify-email/{token}', 'verify')->name('verify-email');
 });
 
 // ----------------------------- user profile ------------------------------//
@@ -334,6 +333,3 @@ Route::controller(SalesController::class)->group(function () {
 Route::controller(PersonalInformationController::class)->group(function () {
     Route::post('user/information/save', 'saveRecord')->middleware('auth')->name('user/information/save');
 });
-
-
-
