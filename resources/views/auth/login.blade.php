@@ -6,7 +6,7 @@
         <div class="container">
             <!-- Account Logo -->
             <div class="account-logo">
-                <a href="index.html"><img src="{{ URL::to('assets/img/logo2.png') }}" alt="Soeng Souy"></a>
+                <a href="index.html"><img src="https://cdn.haitrieu.com/wp-content/uploads/2021/09/Logo-DH-CONG-NGHE-THANH-PHO-HO-CHI-MINH-HUTECH.png" alt="SoengSouy"></a>
             </div>
             {{-- message --}}
             {!! Toastr::message() !!}
