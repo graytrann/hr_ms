@@ -47,10 +47,10 @@
 		<div id="loader-wrapper">
 			<div id="loader">
 				<div class="loader-ellips">
-				  <span class="loader-ellips__dot"></span>
-				  <span class="loader-ellips__dot"></span>
-				  <span class="loader-ellips__dot"></span>
-				  <span class="loader-ellips__dot"></span>
+					<span class="loader-ellips__dot"></span>
+					<span class="loader-ellips__dot"></span>
+					<span class="loader-ellips__dot"></span>
+					<span class="loader-ellips__dot"></span>
 				</div>
 			</div>
 		</div>
@@ -80,19 +80,7 @@
 			<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
 			<!-- Header Menu -->
 			<ul class="nav user-menu">
-				<!-- Search -->
-				{{-- <li class="nav-item">
-					<div class="top-nav-search">
-						<a href="javascript:void(0);" class="responsive-search"> <i class="fa fa-search"></i> </a>
-						<form action="search.html">
-							<input class="form-control" type="text" placeholder="Search here">
-							<button class="btn" type="submit">
-								<i class="fa fa-search"></i>
-							</button>
-						</form>
-					</div>
-				</li> --}}
-				<!-- /Search -->
+
 
 				<!-- Flag -->
 				<li class="nav-item dropdown has-arrow flag-nav">
@@ -101,9 +89,9 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<a href="javascript:void(0);" class="dropdown-item">
-						<img src="{{ URL::to('assets/img/flags/us.png') }}" alt="" height="16"> English </a>
+							<img src="{{ URL::to('assets/img/flags/us.png') }}" alt="" height="16"> English </a>
 						<a href="javascript:void(0);" class="dropdown-item">
-						<img src="{{ URL::to('https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/1200px-Flag_of_Vietnam.svg.png') }}" alt="" height="16"> Vietnamese </a>
+						<img src="{{ URL::to('assets/img/flags/kh.png') }}" alt="" height="16"> Khmer </a>
 					</div>
 				</li>
 				<!-- /Flag -->
@@ -202,7 +190,7 @@
 						<div class="topnav-dropdown-header">
 							<span class="notification-title">Messages</span>
 							<a href="javascript:void(0)" class="clear-noti"> Clear All </a>
-						 </div>
+						</div>
 						<div class="noti-content">
 							<ul class="notification-list">
 								<li class="notification-message">
@@ -262,8 +250,8 @@
 											<div class="list-left">
 												<span class="avatar">
 													<img alt="" src="{{ URL::to('/assets/images/'. Auth::user()->avatar) }}">
-													</span>
-												</div>
+												</span>
+											</div>
 											<div class="list-body">
 												<span class="message-author">Mike Litorus</span>
 												<span class="message-time">3 Mar</span>
@@ -299,8 +287,8 @@
 				<li class="nav-item dropdown has-arrow main-drop">
 					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 						<span class="user-img">
-						<img src="{{ URL::to('/assets/images/'. Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
-						<span class="status online"></span></span>
+							<img src="{{ URL::to('/assets/images/'. Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
+							<span class="status online"></span></span>
 						<span>{{ Session::get('name') }}</span>
 					</a>
 					<div class="dropdown-menu">
@@ -363,4 +351,5 @@
 	<script src="{{ URL::to('assets/js/app.js') }}"></script>
 	@yield('script')
 </body>
+
 </html>

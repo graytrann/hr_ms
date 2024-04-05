@@ -72,6 +72,7 @@ Auth::routes();
 Route::controller(HomeController::class)->group(function () {
     Route::get('/home', 'index')->name('home');
     Route::get('em/dashboard', 'emDashboard')->name('em/dashboard');
+    Route::get('da/dashboard', 'daDashboard')->name('da/dashboard');
 });
 
 // -----------------------------settings----------------------------------------//
