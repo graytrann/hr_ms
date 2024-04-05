@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-  
+
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
@@ -30,26 +30,26 @@
             <form action="{{ route('all/employee/list/search') }}" method="POST">
                 @csrf
                 <div class="row filter-row">
-                    <div class="col-sm-6 col-md-3">  
+                    <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" name="employee_id">
                             <label class="focus-label">Employee ID</label>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3">  
+                    <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating">
                             <label class="focus-label">Employee Name</label>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3"> 
+                    <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating">
                             <label class="focus-label">Position</label>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3">  
-                        <button type="sumit" class="btn btn-success btn-block"> Search </button>  
+                    <div class="col-sm-6 col-md-3">
+                        <button type="sumit" class="btn btn-success btn-block"> Search </button>
                     </div>
                 </div>
             </form>
@@ -104,7 +104,7 @@
             </div>
         </div>
         <!-- /Page Content -->
-      
+
         <!-- Add Employee Modal -->
         <div id="add_employee" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -130,7 +130,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Email <span class="text-danger">*</span></label>
@@ -154,7 +154,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">  
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="Auto id employee" readonly>

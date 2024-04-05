@@ -35,14 +35,14 @@
 </head>
 
 <body>
-	<style>    
+	<style>
 		.invalid-feedback{
 			font-size: 14px;
 		}
 	</style>
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
-		
+
 		<!-- Loader -->
 		<div id="loader-wrapper">
 			<div id="loader">
@@ -81,7 +81,7 @@
 			<!-- Header Menu -->
 			<ul class="nav user-menu">
 				<!-- Search -->
-				<li class="nav-item">
+				{{-- <li class="nav-item">
 					<div class="top-nav-search">
 						<a href="javascript:void(0);" class="responsive-search"> <i class="fa fa-search"></i> </a>
 						<form action="search.html">
@@ -91,7 +91,7 @@
 							</button>
 						</form>
 					</div>
-				</li>
+				</li> --}}
 				<!-- /Search -->
 
 				<!-- Flag -->
@@ -103,7 +103,7 @@
 						<a href="javascript:void(0);" class="dropdown-item">
 						<img src="{{ URL::to('assets/img/flags/us.png') }}" alt="" height="16"> English </a>
 						<a href="javascript:void(0);" class="dropdown-item">
-						<img src="{{ URL::to('assets/img/flags/kh.png') }}" alt="" height="16"> Khmer </a>
+						<img src="{{ URL::to('https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/1200px-Flag_of_Vietnam.svg.png') }}" alt="" height="16"> Vietnamese </a>
 					</div>
 				</li>
 				<!-- /Flag -->
@@ -112,12 +112,12 @@
 				<li class="nav-item dropdown">
 					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 						<i class="fa fa-bell-o"></i>
-						<span class="badge badge-pill">3</span> 
+						<span class="badge badge-pill">3</span>
 					</a>
 					<div class="dropdown-menu notifications">
 						<div class="topnav-dropdown-header">
-							<span class="notification-title">Notifications</span> 
-							<a href="javascript:void(0)" class="clear-noti"> Clear All </a> 
+							<span class="notification-title">Notifications</span>
+							<a href="javascript:void(0)" class="clear-noti"> Clear All </a>
 						</div>
 						<div class="noti-content">
 							<ul class="notification-list">
@@ -192,7 +192,7 @@
 					</div>
 				</li>
 				<!-- /Notifications -->
-				
+
 				<!-- Message Notifications -->
 				<li class="nav-item dropdown">
 					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -200,7 +200,7 @@
 					</a>
 					<div class="dropdown-menu notifications">
 						<div class="topnav-dropdown-header">
-							<span class="notification-title">Messages</span> 
+							<span class="notification-title">Messages</span>
 							<a href="javascript:void(0)" class="clear-noti"> Clear All </a>
 						 </div>
 						<div class="noti-content">
@@ -214,10 +214,10 @@
 												</span>
 											</div>
 											<div class="list-body">
-												<span class="message-author">Richard Miles </span> 
+												<span class="message-author">Richard Miles </span>
 												<span class="message-time">12:28 AM</span>
 												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span> 
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
 											</div>
 										</div>
 									</a>
@@ -231,10 +231,10 @@
 												</span>
 											</div>
 											<div class="list-body">
-												<span class="message-author">John Doe</span> 
+												<span class="message-author">John Doe</span>
 												<span class="message-time">6 Mar</span>
-												<div class="clearfix"></div> 
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span> 
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
 											</div>
 										</div>
 									</a>
@@ -250,8 +250,8 @@
 											<div class="list-body">
 												<span class="message-author"> Tarah Shropshire </span>
 												<span class="message-time">5 Mar</span>
-												<div class="clearfix"></div> 
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span> 
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
 											</div>
 										</div>
 									</a>
@@ -268,7 +268,7 @@
 												<span class="message-author">Mike Litorus</span>
 												<span class="message-time">3 Mar</span>
 												<div class="clearfix"></div>
-												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span> 
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
 											</div>
 										</div>
 									</a>
@@ -346,7 +346,7 @@
 	<script src="{{ URL::to('assets/plugins/raphael/raphael.min.js') }}"></script>
 	<script src="{{ URL::to('assets/js/chart.js') }}"></script>
 	<script src="{{ URL::to('assets/js/Chart.min.js') }}"></script>
-	<script src="{{ URL::to('assets/js/line-chart.js') }}"></script>	
+	<script src="{{ URL::to('assets/js/line-chart.js') }}"></script>
 	<!-- Slimscroll JS -->
 	<script src="{{ URL::to('assets/js/jquery.slimscroll.min.js') }}"></script>
 	<!-- Select2 JS -->
@@ -358,7 +358,7 @@
 	<script src="{{ URL::to('assets/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ URL::to('assets/js/dataTables.bootstrap4.min.js') }}"></script>
 	<!-- Multiselect JS -->
-	<script src="{{ URL::to('assets/js/multiselect.min.js') }}"></script>		
+	<script src="{{ URL::to('assets/js/multiselect.min.js') }}"></script>
 	<!-- Custom JS -->
 	<script src="{{ URL::to('assets/js/app.js') }}"></script>
 	@yield('script')
